@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acacia Pro - Charcoal Gold Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Cairo', sans-serif;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+        background-color: #0A0A0A; 
+      }
+      
+      /* Al Arabiya style font classes */
+      .brand-font {
+        font-family: 'Cairo', sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.02em;
+      }
+
+      .digital-font {
+        font-family: 'Cairo', sans-serif;
+        font-weight: 900;
+      }
+
+      @keyframes rgb-sweep {
+        0% { background-position: 0% 50%; filter: drop-shadow(0 0 5px rgba(255, 0, 0, 0.4)); }
+        20% { filter: drop-shadow(0 0 5px rgba(255, 255, 0, 0.4)); }
+        40% { filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.4)); }
+        60% { filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.4)); }
+        80% { filter: drop-shadow(0 0 5px rgba(0, 0, 255, 0.4)); }
+        100% { background-position: 200% 50%; filter: drop-shadow(0 0 5px rgba(255, 0, 255, 0.4)); }
+      }
+
+      .jazmati-rgb-glow {
+        background: linear-gradient(
+          to right,
+          #ff0000, #ffff00, #00ff00, #00ffff, #0000ff, #ff00ff, #ff0000
+        );
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: rgb-sweep 4s linear infinite;
+        display: inline-block;
+      }
+
+      .luxury-pattern {
+        background-image: radial-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 0);
+        background-size: 24px 24px;
+        opacity: 0.5;
+      }
+
+      .luxury-geometric {
+        background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 100%);
+        position: relative;
+      }
+
+      .luxury-frame {
+        position: absolute;
+        inset: 20px;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        pointer-events: none;
+        z-index: 50;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.1), inset 0 0 15px rgba(212, 175, 55, 0.1);
+      }
+
+      .glass-card {
+        background: #121212;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+      }
+
+      .btn-press {
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden; 
+        z-index: 10;
+        outline: none;
+      }
+
+      .btn-press::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(circle, rgba(212, 175, 55, 0.4) 0%, transparent 70%);
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0;
+        transition: none;
+        pointer-events: none;
+      }
+
+      .btn-press:active::after {
+        animation: press-pulse 0.5s ease-out;
+      }
+
+      @keyframes press-pulse {
+        0% { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
+        100% { transform: translate(-50%, -50%) scale(2); opacity: 0; }
+      }
+
+      .btn-press:active {
+        transform: scale(0.95);
+        border-color: rgba(212, 175, 55, 0.5);
+      }
+
+      .acacia-text {
+        background: linear-gradient(90deg, #8E6E37, #F3E5AB, #D4AF37, #8E6E37);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 5s linear infinite;
+        font-weight: 900;
+      }
+      
+      @keyframes shimmer {
+        to { background-position: 200% center; }
+      }
+
+      /* Moving Light Frame Styling */
+      .moving-light-container {
+        position: relative;
+        padding: 3px;
+        overflow: hidden;
+        border-radius: 1.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .moving-light-container::before {
+        content: '';
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background: conic-gradient(
+          transparent, 
+          rgba(212, 175, 55, 0.8), 
+          transparent 30%,
+          rgba(142, 110, 55, 0.8),
+          transparent 60%
+        );
+        animation: rotate-light 4s linear infinite;
+      }
+
+      @keyframes rotate-light {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+
+      .moving-light-inner {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        background: #0A0A0A;
+        border-radius: 1.7rem;
+      }
+
+      /* Refined Al Arabiya Inspired Digital Styling */
+      .digital-segment {
+        font-family: 'Cairo', sans-serif;
+        font-weight: 900;
+        text-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+        line-height: 1.15 !important;
+        padding-top: 0.1em;
+        padding-bottom: 0.1em;
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0.02em; /* Slightly more space for clarity */
+      }
+
+      @keyframes modal-in {
+        from { opacity: 0; transform: scale(0.95) translateY(20px); }
+        to { opacity: 1; transform: scale(1) translateY(0); }
+      }
+      .animate-modal { animation: modal-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "lucide-react": "https://esm.sh/lucide-react@^0.564.0",
+        "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
+      }
+    }
+    </script>
+  <link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="index.tsx"></script>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

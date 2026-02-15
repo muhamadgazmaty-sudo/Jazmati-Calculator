@@ -1,0 +1,7 @@
+{
+  "name": "Jazmati Calculator",
+  "description": "A luxury professional calculator with deep emerald aesthetic and high-performance engine.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}
