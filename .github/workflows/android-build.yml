@@ -17,28 +17,23 @@ jobs:
         with:
           node-version: 20
 
-      - name: Create Package File
+      - name: Force Install Capacitor & Setup
         run: |
-          if [ ! -f package.json ]; then
-            npm init -y
-            npm install @capacitor/core @capacitor/cli @capacitor/android
-          fi
-
-      - name: Build Web Assets
-        run: |
+          npm install @capacitor/cli @capacitor/core @capacitor/android
+          # إنشاء مجلد الويب إذا لم يوجد
           mkdir -p www
-          cp -r . www/ || true
+          # إنشاء ملف الإعدادات يدوياً لتجنب فشل npx init
+          echo '{"appId": "com.myapp.bravo", "appName": "My App", "webDir": "www", "bundledWebRuntime": false}' > capacitor.config.json
+          # إضافة منصة أندرويد
+          npx cap add android
 
-      - name: Initialize Capacitor
+      - name: Add Vibration Permission (For the issue you had)
         run: |
-          if [ ! -f capacitor.config.json ]; then
-            npx cap init "My App" "com.myapp.bravo" --web-dir www
-          fi
+          # هذا السطر سيضيف إذن الاهتزاز تلقائياً لملف أندرويد لتعمل الميزة التي طلبتها
+          sed -i '/<application/i <uses-permission android:name="android.permission.VIBRATE" />' android/app/src/main/AndroidManifest.xml
 
-      - name: Setup Android Platform
-        run: |
-          npx cap add android || echo "Already added"
-          npx cap sync android
+      - name: Sync Project
+        run: npx cap sync android
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -55,5 +50,5 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: my-app-apk
+          name: my-final-app
           path: android/app/build/outputs/apk/debug/app-debug.apk
